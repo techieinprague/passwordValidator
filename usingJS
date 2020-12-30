@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <title>Password validator</title>
+        
+        <style>
+            div{
+                background-color: lightblue;
+                height: 1000px;
+                padding: 10px;
+            }
+            p{
+                font-size: 20px;
+                font-family: serif;
+                
+                
+            }
+            input{
+                border-radius: 5px;
+                width: 175px;
+                height: 25px;
+                margin-top: 10px;
+            }
+            button{
+                height: 25px;
+                width: 100px;
+                margin-top: 10px;
+                background-color: grey;
+                color: white;
+            }
+            #error{
+                font-size: 15px;
+                font-family: serif;
+            }
+        
+        </style>
+    
+    
+    </head>
+    <body>
+         
+        <div>
+        <p >Enter your password: <br>
+        <input id="password" type="password"></p>
+        <p >Retype your password: <br>
+        <input id="password2" type="password">
+        <br><button id="button" onclick="validate()">Submit</button></p>
+       
+        
+        <p id="error" style="color: red"></p>
+        </div>
+
+        <script>
+           
+    function validate(){
+         var password = document.getElementById("password").value;
+         var password2 = document.getElementById("password2").value;
+         var errMessage = document.getElementById("error") ; 
+         var throwError = "" ; 
+        
+        try{ 
+    
+             if(password.length<6){
+                 throwError += "Password must contain at least six characters!<br />";
+             }
+             if(/[A-Z]/g.test(password) == false){
+                 throwError += "Password must contain at least one uppercase letter!<br />";
+             }
+             if(/\d/g.test(password) == false){
+                 throwError+= "Password must contain at least one number!<br />";
+             }
+             if(password != password2){
+                 throwError+= "Passwords doesn't match!<br />";
+             } 
+            throw throwError ; 
+            }catch(err){
+                errMessage.innerHTML = err ;
+            }
+        }
+            
+        </script>
+        
+    </body>
+   
+</html>
